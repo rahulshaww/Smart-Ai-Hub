@@ -1,0 +1,39 @@
+/* ============ COLOR TOKENS & THEMES ============ */
+:root {
+  --bg-0: #0b1220;
+  --bg-1: #101a2b;
+  --bg-2: #16233a;
+  --glass: rgba(18, 27, 43, 0.84);
+  --glass-strong: rgba(24, 36, 57, 0.94);
+  --glass-border: rgba(148, 163, 184, 0.16);
+  --txt-0: #f4f7fb;
+  --txt-1: #c5cfde;
+  --txt-2: #94a3b8;
+  --txt-3: #64748b;
+  --violet: #9b8cff;
+  --indigo: #5b8cff;
+  --cyan: #67c7ff;
+  --pink: #b8a9ff;
+  --accent: #5b8cff;
+  --grad-1: linear-gradient(135deg, #5b8cff 0%, #8f7cff 100%);
+  --grad-2: linear-gradient(135deg, #4f8fe8 0%, #8f7cff 100%);
+  --shadow-glass: 0 14px 38px rgba(0, 0, 0, 0.28);
+  --radius-l: 18px;
+  --radius-m: 12px;
+  --radius-s: 9px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="light"] {
+  --bg-0: #f2f6fc;
+  --bg-1: #e8eef8;
+  --bg-2: #dce6f4;
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-strong: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(71, 96, 134, 0.18);
+  --txt-0: #172033;
+  --txt-1: #40516c;
+  --txt-2: #64748b;
+  --txt-3: #94a3b8;
+  --shadow-glass: 0 14px 38px rgba(46, 73, 112, 0.14);
+}

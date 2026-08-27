@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart AI Hub — Free AI Resume Designer, Essay Writer, PDF Tools &amp; Chat Assistant</title>
+  <meta name="description" content="100% Free AI &amp; PDF productivity workspace. Build ATS resumes, convert images to PDF, compress photos, edit PDFs, draft academic essays, and chat with AI.">
+  <meta name="keywords" content="AI resume builder, free ATS resume maker, photo resizer, image to pdf, pdf toolkit, academic essay writer, smart AI hub">
+  <meta name="theme-color" content="#0ea5e9">
+
+  <!-- OpenGraph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Smart AI Hub — Free AI Resume Designer, Essay Writer &amp; PDF Tools">
+  <meta property="og:description" content="100% Free client-side AI &amp; PDF tools. Zero file upload privacy. Build resumes, resize photos, and manage PDFs with ease.">
+  <meta property="og:site_name" content="Smart AI Hub">
+
+  <!-- Crisp SVG Favicon (No 404) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230ea5e9'%3E%3Cpath d='M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z'/%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Third-party CDN Libraries (Markdown, Sanitizer & PDF Exporter) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+  <script src="js/vendor/jspdf.umd.min.js"></script>
+  <script src="js/vendor/pdf-lib.min.js"></script>
+  <script>
+    if (!window.jspdf) {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>');
+    }
+    if (!window.PDFLib) {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"><\/script>');
+    }
+  </script>
+</head>
+<body data-theme="dark">
+
+  <!-- Aurora Animation Backdrop -->
+  <div class="aurora"><span></span><span></span><span></span></div>
+  <div class="grain"></div>
+
+  <!-- Header & Navigation -->
+  <header class="site-nav">
+    <a href="#home" class="brand">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="white"/></svg>
+      </span>
+      Smart AI Hub
+    </a>
+    
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-view="home">Home</a>
+      <a href="#tools" data-view="tools">Tools</a>
+      <a href="#about" data-view="about">About</a>
+      <a href="mailto:charniwebsolution@gmail.com?subject=Smart%20AI%20Hub%20Help">Need help?</a>
+    </nav>
+
+    <div class="nav-right">
+      <span class="user-plan-badge free-badge" title="100% Free Ad-Supported AI Tools">✨ 100% FREE AI HUB</span>
+
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="Search tools..." oninput="UI.handleSearch(this.value); Router.navigate('tools');">
+      </div>
+
+      <button class="icon-btn" onclick="UI.showHistoryModal()" title="Saved Generations History">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </button>
+
+      <button class="icon-btn moon" onclick="toggleTheme()" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="icon-btn sun" onclick="toggleTheme()" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+
+      <button class="icon-btn burger" onclick="UI.toggleMobileMenu()" title="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div class="mobile-menu glass" id="mobileMenu">
+    <a href="#home" data-view="home">Home</a>
+    <a href="#tools" data-view="tools">Tools</a>
+    <a href="#about" data-view="about">About</a>
+    <a href="mailto:charniwebsolution@gmail.com?subject=Smart%20AI%20Hub%20Help">Need help?</a>
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" placeholder="Search tools..." oninput="UI.handleSearch(this.value); Router.navigate('tools');">
+    </div>
+  </div>
+
+  <main>
+    <!-- ========== HOME VIEW ========== -->
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="eyebrow glass"><span class="dot"></span> Free forever · No signup · Built for students &amp; job seekers</div>
+        <h1>Make your next step <span class="grad-text">feel easier.</span></h1>
+        <p class="lead">Create a sharper resume, write better academic work, and get unstuck with a friendly AI workspace designed for real life.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="Router.navigate('tools', 'resume')">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+            Build my resume
+          </button>
+          <button class="hero-text-link" onclick="Router.navigate('tools')">Explore all tools <span>↗</span></button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat"><b class="grad-text">5</b><span>power tools</span></div>
+          <div class="stat"><b class="grad-text">6</b><span>resume layouts</span></div>
+          <div class="stat"><b class="grad-text">0₹</b><span>free forever</span></div>
+        </div>
+      </div>
+
+      <!-- COMPACT GLOWING AI CHAT ASSISTANT SPOTLIGHT -->
+      <section class="home-chat-section" id="homeChatSection">
+        <div class="home-chat-card glass">
+          <div class="home-chat-glow"></div>
+          
+          <div class="home-chat-header">
+            <div class="home-chat-title-group">
+              <div class="home-chat-avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span class="online-indicator"></span>
+              </div>
+              <div>
+                <div class="home-chat-title-row">
+                  <h3>Need a little help?</h3>
+                  <span class="chat-status-pill">● READY</span>
+                </div>
+                <p>Ask in Hindi, Hinglish, or English. We’ll help you find the right tool.</p>
+              </div>
+            </div>
+
+            <div class="home-chat-actions">
+              <div class="persona-mini-chips">
+                <span class="persona-chip active" id="homeChip-concise" onclick="UI.setHomeChatPersona('Concise Assistant')">⚡ Concise</span>
+                <span class="persona-chip" id="homeChip-prod" onclick="UI.setHomeChatPersona('Productivity Coach')">🎯 Coach</span>
+                <span class="persona-chip" id="homeChip-code" onclick="UI.setHomeChatPersona('Code Genius')">💻 Code</span>
+                <span class="persona-chip" id="homeChip-creative" onclick="UI.setHomeChatPersona('Creative Brainstormer')">💡 Creative</span>
+              </div>
+              <button class="btn btn-sm btn-ghost" onclick="Router.navigate('tools', 'chat')" title="Open Full Screen Chat">
+                Open chat ↗
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Suggestion Chips -->
+          <div class="home-chat-suggestions">
+            <button class="tool-btn-sm" onclick="UI.sendHomeQuickPrompt('Smart AI Hub ke bare me hinglish me samjhao')">🌟 Hinglish overview</button>
+            <button class="tool-btn-sm" onclick="UI.sendHomeQuickPrompt('resume kaise banaye aur A4 PDF kaise export kare?')">📄 Resume guide</button>
+            <button class="tool-btn-sm" onclick="UI.sendHomeQuickPrompt('academic essay kaise likhe APA format me?')">🎓 Essay guide</button>
+          </div>
+
+          <!-- Mini Chat Messages Stream -->
+          <div class="home-chat-body" id="homeChatMessages">
+            <div class="msg ai">
+              👋 <b>Namaste!</b> Main aapko right tool choose karne aur first draft banane me help kar sakta hoon.
+            </div>
+          </div>
+
+          <!-- Glowing Input Bar -->
+          <div class="home-chat-input-row">
+            <div class="home-chat-input-wrap">
+              <input type="text" id="homeChatInput" placeholder="Ask something…" onkeydown="if(event.key==='Enter')UI.sendHomeChat();">
+            </div>
+            <button class="send-btn btn-glowing-chat" id="homeChatSendBtn" onclick="UI.sendHomeChat()" title="Send Message">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.3"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolkit-section">
+        <div class="section-head">
+          <span class="tag">Your starting point</span>
+          <h2>Choose what you need today</h2>
+          <p>Simple tools for the moments when you need a polished result, not another complicated dashboard.</p>
+        </div>
+        <div class="tool-grid" id="homeToolGrid"></div>
+      </section>
+
+      <section class="how-it-works-section">
+        <div class="section-head compact-head">
+          <span class="tag">How it works</span>
+          <h2>From blank page to done.</h2>
+          <p>Three calm steps. No learning curve.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card"><span class="step-number">01</span><h3>Tell us what you need</h3><p>Share your role, topic, or question in a few words.</p></div>
+          <div class="step-card"><span class="step-number">02</span><h3>Make it yours</h3><p>Choose a style, edit the result, and add your own voice.</p></div>
+          <div class="step-card"><span class="step-number">03</span><h3>Take it with you</h3><p>Copy your work or download a clean, ready-to-use PDF.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== TOOLS VIEW ========== -->
+    <section class="view" id="view-tools">
+      <div style="padding:44px 0 8px;">
+        <div id="toolsPageGrid">
+          <div class="section-head" style="margin-bottom:28px;">
+            <span class="tag">Workspace</span>
+            <h2>All tools</h2>
+            <p>Search or browse the full list, then click any tool to open its workspace.</p>
+          </div>
+          <div class="tool-grid" id="toolsGrid"></div>
+        </div>
+        <div id="toolWorkspaceWrap"></div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT VIEW ========== -->
+    <section class="view" id="view-about">
+      <div style="padding:52px 0 30px;">
+        <div class="about-hero-row">
+          <div>
+            <span class="tag" style="color:var(--violet);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12.5px;">About Smart AI Hub</span>
+            <h2 style="font-size:clamp(26px,4vw,36px);font-weight:800;margin:12px 0 16px;letter-spacing:-.02em;">Built to save you the blank-page problem</h2>
+            <p style="color:var(--txt-1);line-height:1.7;font-size:15px;">Smart AI Hub provides a clean, fast productivity workspace focused on what students, job applicants, and professionals need most — executive ATS resumes, formatted academic essays, and 24/7 intelligent conversational AI assistance. No downloads, no clutter, no learning curve.</p>
+          </div>
+          <div class="stat-tile-grid">
+            <div class="stat-tile glass"><b class="grad-text">5</b><span>Productivity Tools</span></div>
+            <div class="stat-tile glass"><b class="grad-text">6</b><span>ATS Resume Layouts</span></div>
+            <div class="stat-tile glass"><b class="grad-text">~5s</b><span>Avg. generation time</span></div>
+            <div class="stat-tile glass"><b class="grad-text">0₹</b><span>Free Forever</span></div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:20px;">
+          <span class="tag">Why people use it</span>
+          <h2>Made for real work, not demos</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card glass">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+            <h4>Instant results</h4>
+            <p>Every tool generates a usable draft in seconds — no waiting, no queues.</p>
+          </div>
+          <div class="feature-card glass">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 9h6v6H9z"/></svg>
+            <h4>One clean layout</h4>
+            <p>Every tool shares the same input, generate, and copy pattern — learn it once, use it everywhere.</p>
+          </div>
+          <div class="feature-card glass">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7l8-4z"/></svg>
+            <h4>Free to use</h4>
+            <p>All tools, templates, and HD exports are 100% free forever for all creators and professionals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <a href="#home" class="brand" style="margin-bottom:12px;">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="white"/></svg></span>
+          Smart AI Hub
+        </a>
+        <p style="font-size:13.5px;color:var(--txt-2);line-height:1.6;max-width:280px;">100% Free AI productivity tools for students, job applicants, and professionals.</p>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <a href="#home">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+          <a href="mailto:charniwebsolution@gmail.com?subject=Smart%20AI%20Hub%20Help">Need help?</a>
+      </div>
+      <div>
+        <h5>Featured Tools</h5>
+        <a href="#tools/resume">Pro Resume Designer</a>
+        <a href="#tools/essay">Academic Essay Writer</a>
+        <a href="#tools/photo-resizer">Photo Resizer &amp; Compressor</a>
+        <a href="#tools/image-to-pdf">Image to PDF Converter</a>
+        <a href="#tools/pdf-toolkit">PDF Toolkit (Merge, Split, Sign)</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+          <a href="mailto:charniwebsolution@gmail.com?subject=Smart%20AI%20Hub%20Help">Need help?</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms of use</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Smart AI Hub. All rights reserved.</span>
+      <span>Made for students, creators &amp; professionals.</span>
+    </div>
+  </footer>
+
+  <!-- History Drawer Modal -->
+  <div class="modal-backdrop" id="historyModal" onclick="if(event.target===this)UI.hideHistoryModal();">
+    <div class="modal-window glass">
+      <div class="modal-head">
+        <h3>📜 Saved Generations History</h3>
+        <div style="display:flex;gap:8px;">
+          <button class="tool-btn-sm" onclick="UI.clearAllHistory()">Clear All</button>
+          <button class="icon-btn" onclick="UI.hideHistoryModal()">&times;</button>
+        </div>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Resume & Document Preview Modal -->
+  <div class="modal-backdrop" id="fullscreenPreviewModal" onclick="if(event.target===this)UI.hideFullscreenPreview();">
+    <div class="modal-window fullscreen-preview-window">
+      <div class="modal-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:18px;">🔍</span>
+          <h3>Fullscreen Document &amp; Resume Preview</h3>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <button class="tool-btn-sm" onclick="UI.copyOutput()">📋 Copy</button>
+          <button class="tool-btn-sm" onclick="UI.downloadPDF()">📥 PDF</button>
+          <button class="tool-btn-sm" onclick="UI.downloadTXT()">📄 TXT</button>
+          <button class="modal-close" onclick="UI.hideFullscreenPreview()">&times;</button>
+        </div>
+      </div>
+      <div class="fullscreen-preview-body" id="fullscreenPreviewBody">
+        <!-- Rendered Resume or Document cloned here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- FLOATING CHAT POPUP WINDOW -->
+  <div class="floating-chat-window glass" id="floatingChatWindow" style="display:none;">
+    <div class="floating-chat-header">
+      <div class="floating-chat-header-info">
+        <div class="home-chat-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span class="online-indicator"></span>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <h4 style="margin:0;font-size:14px;font-weight:700;color:#fff;">Smart AI Assistant</h4>
+            <span class="chat-status-pill" style="font-size:9.5px;padding:2px 6px;">● ONLINE</span>
+          </div>
+          <small style="font-size:11px;color:var(--txt-2);">Hindi, Hinglish, English</small>
+        </div>
+      </div>
+      <div class="floating-chat-header-actions">
+        <button class="icon-btn-sm" onclick="UI.toggleFloatingChat(false)" title="Close Chat">&times;</button>
+      </div>
+    </div>
+
+    <!-- Persona Switch Chips -->
+    <div class="floating-chat-personas">
+      <span class="persona-chip active" id="floatChip-concise" onclick="UI.setFloatingChatPersona('Concise Assistant')">⚡ Concise</span>
+      <span class="persona-chip" id="floatChip-prod" onclick="UI.setFloatingChatPersona('Productivity Coach')">🎯 Coach</span>
+      <span class="persona-chip" id="floatChip-code" onclick="UI.setFloatingChatPersona('Code Genius')">💻 Code</span>
+      <span class="persona-chip" id="floatChip-creative" onclick="UI.setFloatingChatPersona('Creative Brainstormer')">💡 Creative</span>
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div class="floating-chat-suggestions">
+      <button class="tool-btn-sm" onclick="UI.sendFloatingQuickPrompt('Smart AI Hub ke bare me hinglish me samjhao')">🌟 Hinglish overview</button>
+      <button class="tool-btn-sm" onclick="UI.sendFloatingQuickPrompt('resume kaise banaye aur A4 PDF kaise export kare?')">📄 Resume guide</button>
+      <button class="tool-btn-sm" onclick="UI.sendFloatingQuickPrompt('academic essay kaise likhe APA format me?')">🎓 Essay guide</button>
+    </div>
+
+    <!-- Messages Stream -->
+    <div class="floating-chat-messages" id="floatingChatMessages">
+      <div class="msg ai">
+        👋 <b>Namaste!</b> Main aapka 24/7 AI Assistant hoon. Resume drafting, academic essays, coding ya koi bhi sawal Hindi, Hinglish ya English me poochein!
+      </div>
+    </div>
+
+    <!-- Input Row -->
+    <div class="floating-chat-input-row">
+      <input type="text" id="floatingChatInput" placeholder="Ask anything in Hindi, Hinglish, English..." onkeydown="if(event.key==='Enter')UI.sendFloatingChat();">
+      <button class="send-btn btn-glowing-chat" id="floatingChatSendBtn" onclick="UI.sendFloatingChat()" title="Send Message">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.3"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOWING AI ASSISTANT LAUNCHER -->
+  <div class="floating-ai-launcher" onclick="UI.openFloatingChat()" title="Ask Smart AI Assistant (Hindi, Hinglish, English)">
+    <div class="floating-ai-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span class="floating-pulse-dot"></span>
+    </div>
+    <span class="floating-ai-text">✨ AI Assistant</span>
+  </div>
+
+  <!-- Application Modules -->
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ai-brain.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

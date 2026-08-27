@@ -1,0 +1,29 @@
+{
+  "name": "smart-ai-hub",
+  "version": "1.0.0",
+  "description": "Free AI Productivity Tools for Students, Creators, and Professionals",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "smoke": "node tests/smoke-test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai",
+    "productivity",
+    "resume-builder",
+    "essay-writer",
+    "claude-ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.6.2"
+  }
+}
